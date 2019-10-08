@@ -6,9 +6,9 @@ import * as AuthReducer from './store/reducers/auth_reducer';
 import * as FormReducer from './store/reducers/form_reducer';
 import Routes from './routes';
 
-// import Auth from './utils/auth';
+import Auth from './utils/auth';
 
-// const auth = new Auth();
+const auth = new Auth();
 
 const ContextState = () => {
   // Auth Reducer
@@ -45,12 +45,12 @@ const ContextState = () => {
     dispatchForm(ACTION.user_input_submit(event.target.useContext.value))
   }
 
-  // // Handle authentication from callback
-  // const handleAuthentication = (props) => {
-  //   if(props.location.hash) {
-  //     auth.handleAuth();
-  //   }
-  // }
+  // Handle authentication from callback
+  const handleAuthentication = (props) => {
+    if(props.location.hash) {
+      auth.handleAuth();
+    }
+  }
 
   return (
     <div>
@@ -70,9 +70,9 @@ const ContextState = () => {
           useContextChange: (event) => handleFormChange(event),
           useContextSubmit: (event) => handleFormSubmit(event),
 
-          // // Handle auth
-          // handleAuth: (props) => handleAuthentication(props),
-          // authObj: auth
+          // Handle auth
+          handleAuth: (props) => handleAuthentication(props),
+          authObj: auth
         }}>
         <Routes />
       </Context.Provider>
